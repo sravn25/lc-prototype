@@ -1,8 +1,8 @@
 export const inventoryData = [
   {
     id: "INV001",
-    name: "Wireless Headphones",
-    category: "Electronics",
+    name: "Bath Towel",
+    category: "Housekeeping",
     stock: 45,
     price: 99.99,
     status: "In Stock",
@@ -10,8 +10,8 @@ export const inventoryData = [
   },
   {
     id: "INV002",
-    name: "Office Chair",
-    category: "Furniture",
+    name: "Hand Towel",
+    category: "Housekeeping",
     stock: 12,
     price: 249.99,
     status: "Low Stock",
@@ -19,8 +19,8 @@ export const inventoryData = [
   },
   {
     id: "INV003",
-    name: "Coffee Maker",
-    category: "Appliances",
+    name: "Bathrobe",
+    category: "Garment",
     stock: 0,
     price: 79.99,
     status: "Out of Stock",
@@ -28,8 +28,8 @@ export const inventoryData = [
   },
   {
     id: "INV004",
-    name: "Notebook Set",
-    category: "Stationery",
+    name: "Bedsheet",
+    category: "Housekeeping",
     stock: 150,
     price: 12.99,
     status: "In Stock",
@@ -37,8 +37,8 @@ export const inventoryData = [
   },
   {
     id: "INV005",
-    name: "Desk Lamp",
-    category: "Electronics",
+    name: "Pillow case",
+    category: "Housekeeping",
     stock: 8,
     price: 34.99,
     status: "Low Stock",
