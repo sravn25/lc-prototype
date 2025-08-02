@@ -98,3 +98,51 @@ export const customerData = [
     joinDate: "2023-06-18",
   },
 ];
+
+export const qualityData = [
+  {
+    id: "T01",
+    name: "Bath Towel",
+    category: "Housekeeping",
+    amount: 45,
+    torn: 1,
+    stain: 0,
+    treshold: 5,
+  },
+  {
+    id: "T02",
+    name: "Hand Towel",
+    category: "Housekeeping",
+    amount: 60,
+    torn: 2,
+    stain: 5,
+    treshold: 5,
+  },
+  {
+    id: "T03",
+    name: "Pillow Case",
+    category: "Housekeeping",
+    amount: 85,
+    torn: 2,
+    stain: 4,
+    treshold: 5,
+  },
+  {
+    id: "T04",
+    name: "Uniform",
+    category: "Garment",
+    amount: 32,
+    torn: 3,
+    stain: 4,
+    treshold: 2,
+  },
+  {
+    id: "T05",
+    name: "Bed sheet (K)",
+    category: "Housekeeping",
+    amount: 50,
+    torn: 2,
+    stain: 1,
+    treshold: 5,
+  },
+];
