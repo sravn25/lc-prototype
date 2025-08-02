@@ -72,7 +72,7 @@ export const cardData: Record<DASHBOARD_ROLE, Entry[]> = {
     },
     {
       title: "Trolley Possession",
-      amount: "42%",
+      amount: "23 (42%)",
       dir: "down",
       sub: "32 is out for delivery",
       icon: BaggageClaimIcon,

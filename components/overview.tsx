@@ -6,8 +6,8 @@ import BasicCard from "./basic-card";
 import DetailCard from "./detail-card";
 import {
   collectOrderData,
-  customerData,
   deliveryOrderData,
+  hotelData,
   inventoryData,
   qualityData,
 } from "@/lib/data";
@@ -102,6 +102,33 @@ export default function DashboardOverview({ role }: { role: DASHBOARD_ROLE }) {
     return (
       <div className="grid gap-4 md:grid-cols-2">
         <DetailCard
+          title="Top Customers"
+          desc="Customers with highest spending"
+          items={[...hotelData]
+            .sort((a, b) => b.revenue - a.revenue)
+            .slice(0, 4)}
+          keyExtractor={(hotel) => hotel.id}
+          leftRender={(hotel) => (
+            <>
+              <p className="font-medium">{hotel.name}</p>
+              <p className="text-sm text-muted-foreground">
+                {hotel.totalCO + hotel.totalDO} orders (CO/DO)
+              </p>
+            </>
+          )}
+          rightRender={(hotel) => (
+            <div className="text-right">
+              <p className="font-medium">{hotel.revenue.toFixed(2)} MYR</p>
+              <Badge
+                variant={hotel.status === "Active" ? "default" : "secondary"}
+              >
+                {hotel.status}
+              </Badge>
+            </div>
+          )}
+        />
+
+        <DetailCard
           title="Recent Low Stock Items"
           desc="Items that need restocking"
           items={inventoryData.filter(
@@ -123,33 +150,6 @@ export default function DashboardOverview({ role }: { role: DASHBOARD_ROLE }) {
             >
               {item.stock} left
             </Badge>
-          )}
-        />
-
-        <DetailCard
-          title="Top Customers"
-          desc="Customers with highest spending"
-          items={[...customerData]
-            .sort((a, b) => b.totalSpent - a.totalSpent)
-            .slice(0, 4)}
-          keyExtractor={(customer) => customer.id}
-          leftRender={(customer) => (
-            <>
-              <p className="font-medium">{customer.name}</p>
-              <p className="text-sm text-muted-foreground">
-                {customer.totalOrders} orders
-              </p>
-            </>
-          )}
-          rightRender={(customer) => (
-            <div className="text-right">
-              <p className="font-medium">${customer.totalSpent.toFixed(2)}</p>
-              <Badge
-                variant={customer.status === "VIP" ? "default" : "secondary"}
-              >
-                {customer.status}
-              </Badge>
-            </div>
           )}
         />
       </div>
