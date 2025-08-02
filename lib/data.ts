@@ -146,3 +146,85 @@ export const qualityData = [
     treshold: 5,
   },
 ];
+
+export type OrderStatus = "ongoing" | "awaiting";
+
+export type CollectOrderEntry = {
+  id: string;
+  hotelName: string;
+  timestamp: string;
+  status: OrderStatus;
+};
+
+export type DeliveryOrderEntry = {
+  id: string;
+  hotelName: string;
+  timestamp: string;
+  status: OrderStatus;
+};
+
+export const collectOrderData: CollectOrderEntry[] = [
+  {
+    id: "COL-001",
+    hotelName: "Grand Imperial Hotel",
+    timestamp: "2025-07-30T09:15:00Z",
+    status: "ongoing",
+  },
+  {
+    id: "COL-002",
+    hotelName: "Sunrise Suites",
+    timestamp: "2025-07-29T15:45:00Z",
+    status: "awaiting",
+  },
+  {
+    id: "COL-003",
+    hotelName: "Ocean Breeze Resort",
+    timestamp: "2025-07-28T11:00:00Z",
+    status: "ongoing",
+  },
+  {
+    id: "COL-004",
+    hotelName: "Mountain View Inn",
+    timestamp: "2025-07-27T13:30:00Z",
+    status: "awaiting",
+  },
+  {
+    id: "COL-005",
+    hotelName: "City Central Lodge",
+    timestamp: "2025-07-26T08:45:00Z",
+    status: "awaiting",
+  },
+];
+
+export const deliveryOrderData: DeliveryOrderEntry[] = [
+  {
+    id: "DEL-001",
+    hotelName: "Evergreen Palace",
+    timestamp: "2025-07-30T14:00:00Z",
+    status: "awaiting",
+  },
+  {
+    id: "DEL-002",
+    hotelName: "Sunrise Suites",
+    timestamp: "2025-07-29T18:00:00Z",
+    status: "awaiting",
+  },
+  {
+    id: "DEL-003",
+    hotelName: "Seaside Haven Resort",
+    timestamp: "2025-07-28T16:20:00Z",
+    status: "ongoing",
+  },
+  {
+    id: "DEL-004",
+    hotelName: "Maplewood Inn",
+    timestamp: "2025-07-27T12:00:00Z",
+    status: "awaiting",
+  },
+  {
+    id: "DEL-005",
+    hotelName: "Orchid Garden Hotel",
+    timestamp: "2025-07-26T10:10:00Z",
+    status: "ongoing",
+  },
+];

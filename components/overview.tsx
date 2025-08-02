@@ -4,18 +4,28 @@ import Notice from "./notice";
 import { cardData } from "@/data/card-data";
 import BasicCard from "./basic-card";
 import DetailCard from "./detail-card";
-import { customerData, inventoryData, qualityData } from "@/lib/data";
+import {
+  collectOrderData,
+  customerData,
+  deliveryOrderData,
+  inventoryData,
+  qualityData,
+} from "@/lib/data";
 import { Badge } from "./ui/badge";
 import { DropletsIcon, SplitIcon } from "lucide-react";
+import { useState } from "react";
+import { Button } from "./ui/button";
+import { formatDate } from "@/lib/utils";
 
 export default function DashboardOverview({ role }: { role: DASHBOARD_ROLE }) {
+  const [collectionView, setCollectionView] = useState(true);
   const renderDetailCards = () => {
     if (role === "operation") {
       return (
         <div className="grid gap-4 md:grid-cols-2">
           <DetailCard
             title="Torn & Stained"
-            desc="Items recorded from quality check (highlighted in red passed treshold)"
+            desc="Linen recorded from quality check (highlighted in red passed treshold)"
             items={qualityData
               .filter((item) => item.torn > 0 || item.stain > 0)
               .sort((a, b) => b.torn + b.stain - (a.torn + a.stain))}
@@ -43,6 +53,46 @@ export default function DashboardOverview({ role }: { role: DASHBOARD_ROLE }) {
                   {item.stain} stained
                 </Badge>
               </div>
+            )}
+          />
+
+          <DetailCard
+            title={
+              <div className="flex justify-between items-center">
+                <p>
+                  {collectionView ? "Collection Orders" : "Delivery Orders"}
+                </p>
+                <Button
+                  className="h-6 cursor-pointer"
+                  variant="ghost"
+                  onClick={() => setCollectionView(!collectionView)}
+                >
+                  {collectionView ? "View DO" : "View CO"}
+                </Button>
+              </div>
+            }
+            desc={
+              collectionView
+                ? "Orders scheduled for linen collection from hotels"
+                : "Orders scheduled for delivery to hotels"
+            }
+            items={collectionView ? collectOrderData : deliveryOrderData}
+            keyExtractor={(item) => item.id}
+            leftRender={(item) => (
+              <>
+                <p className="font-medium">{item.hotelName}</p>
+                <p className="text-sm text-muted-foreground">
+                  {formatDate(item.timestamp)}
+                </p>
+              </>
+            )}
+            rightRender={(item) => (
+              <Badge
+                variant={item.status === "ongoing" ? "default" : "outline"}
+                className={item.status === "ongoing" ? "font-bold" : ""}
+              >
+                {item.status}
+              </Badge>
             )}
           />
         </div>

@@ -8,7 +8,7 @@ import {
 } from "./ui/card";
 
 interface DetailCardProps<T> {
-  title: string;
+  title: ReactNode;
   desc: string;
   items: T[];
   keyExtractor: (item: T) => string;
