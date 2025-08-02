@@ -16,6 +16,7 @@ import { DropletsIcon, SplitIcon } from "lucide-react";
 import { useState } from "react";
 import { Button } from "./ui/button";
 import { formatDate } from "@/lib/utils";
+import OverviewGraph from "./overview-graph";
 
 export default function DashboardOverview({ role }: { role: DASHBOARD_ROLE }) {
   const [collectionView, setCollectionView] = useState(true);
@@ -188,6 +189,7 @@ export default function DashboardOverview({ role }: { role: DASHBOARD_ROLE }) {
         ))}
       </div>
       {renderDetailCards()}
+      <OverviewGraph />
     </div>
   );
 }
