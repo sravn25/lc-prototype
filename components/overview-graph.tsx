@@ -15,37 +15,18 @@ import {
 import { Card, CardContent } from "./ui/card";
 
 const rawData = [
-  { date: "Jul 1", CO: 30, DO: 28, revenue: 2800 },
-  { date: "Jul 2", CO: 32, DO: 31, revenue: 3100 },
-  { date: "Jul 3", CO: 35, DO: 34, revenue: 3400 },
-  { date: "Jul 4", CO: 28, DO: 25, revenue: 2500 },
-  { date: "Jul 5", CO: 30, DO: 29, revenue: 2900 },
-  { date: "Jul 6", CO: 40, DO: 38, revenue: 3800 },
-  { date: "Jul 7", CO: 38, DO: 36, revenue: 3600 },
-  { date: "Jul 8", CO: 42, DO: 40, revenue: 4000 },
-  { date: "Jul 9", CO: 37, DO: 34, revenue: 3400 },
-  { date: "Jul 10", CO: 45, DO: 42, revenue: 4200 },
-  { date: "Jul 11", CO: 30, DO: 27, revenue: 2700 },
-  { date: "Jul 12", CO: 36, DO: 34, revenue: 3400 },
-  { date: "Jul 13", CO: 40, DO: 39, revenue: 3900 },
-  { date: "Jul 14", CO: 34, DO: 32, revenue: 3200 },
-  { date: "Jul 15", CO: 31, DO: 29, revenue: 2900 },
-  { date: "Jul 16", CO: 39, DO: 37, revenue: 3700 },
-  { date: "Jul 17", CO: 44, DO: 42, revenue: 4200 },
-  { date: "Jul 18", CO: 33, DO: 31, revenue: 3100 },
-  { date: "Jul 19", CO: 29, DO: 27, revenue: 2700 },
-  { date: "Jul 20", CO: 35, DO: 34, revenue: 3400 },
-  { date: "Jul 21", CO: 38, DO: 36, revenue: 3600 },
-  { date: "Jul 22", CO: 42, DO: 41, revenue: 4100 },
-  { date: "Jul 23", CO: 36, DO: 35, revenue: 3500 },
-  { date: "Jul 24", CO: 30, DO: 29, revenue: 2900 },
-  { date: "Jul 25", CO: 39, DO: 37, revenue: 3700 },
-  { date: "Jul 26", CO: 43, DO: 42, revenue: 4200 },
-  { date: "Jul 27", CO: 31, DO: 29, revenue: 2900 },
-  { date: "Jul 28", CO: 34, DO: 32, revenue: 3200 },
-  { date: "Jul 29", CO: 40, DO: 39, revenue: 3900 },
-  { date: "Jul 30", CO: 37, DO: 35, revenue: 3500 },
-  { date: "Jul 31", CO: 35, DO: 34, revenue: 3400 },
+  { month: "Aug '24", CO: 950, DO: 910, revenue: 90000 },
+  { month: "Sep '24", CO: 980, DO: 940, revenue: 93000 },
+  { month: "Oct '24", CO: 1020, DO: 990, revenue: 96000 },
+  { month: "Nov '24", CO: 970, DO: 940, revenue: 91000 },
+  { month: "Dec '24", CO: 1000, DO: 970, revenue: 94000 },
+  { month: "Jan '25", CO: 980, DO: 950, revenue: 92000 },
+  { month: "Feb '25", CO: 900, DO: 870, revenue: 89000 },
+  { month: "Mar '25", CO: 1030, DO: 1000, revenue: 97000 },
+  { month: "Apr '25", CO: 980, DO: 940, revenue: 92000 },
+  { month: "May '25", CO: 990, DO: 960, revenue: 94000 },
+  { month: "Jun '25", CO: 1010, DO: 980, revenue: 96000 },
+  { month: "Jul '25", CO: 1000, DO: 970, revenue: 95000 },
 ].map((item) => ({
   ...item,
   processingRate:
@@ -53,12 +34,13 @@ const rawData = [
 }));
 
 export default function OverviewGraph() {
-  const CustomTooltip = ({ active, payload }: TooltipPropsValue) => {
+  // @ts-expect-error payload type issue
+  const CustomTooltip = ({ active, payload }) => {
     if (active && payload && payload.length > 0) {
       const data = payload[0].payload;
       return (
         <div className="p-2 rounded border bg-background shadow">
-          <p className="text-sm font-medium">{data.date}</p>
+          <p className="text-sm font-medium">{data.month}</p>
           <p className="text-xs">Revenue: RM {data.revenue}</p>
           <p className="text-xs">Processing Rate: {data.processingRate}%</p>
           <p className="text-xs">CO: {data.CO}</p>
@@ -78,7 +60,7 @@ export default function OverviewGraph() {
         <ResponsiveContainer width="100%" height={400}>
           <BarChart data={rawData}>
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="date" />
+            <XAxis dataKey="month" />
             <YAxis yAxisId="left" orientation="left" stroke="#34a853" />
             <YAxis
               yAxisId="right"
@@ -87,7 +69,7 @@ export default function OverviewGraph() {
               domain={[0, 120]}
               tickFormatter={(v) => `${v}%`}
             />
-            <Tooltip content={<CustomTooltip />} />
+            <Tooltip content={CustomTooltip} />
             <Legend />
 
             {/* Revenue as Bar */}
