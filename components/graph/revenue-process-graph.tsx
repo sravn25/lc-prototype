@@ -12,7 +12,7 @@ import {
   CartesianGrid,
   LabelList,
 } from "recharts";
-import { Card, CardContent } from "./ui/card";
+import { Card, CardContent } from "../ui/card";
 
 const rawData = [
   { month: "Aug '24", CO: 950, DO: 910, revenue: 90000 },
@@ -33,7 +33,7 @@ const rawData = [
     item.CO === 0 ? 0 : Number(((item.DO / item.CO) * 100).toFixed(1)),
 }));
 
-export default function OverviewGraph() {
+export default function RevenueProcessGraph() {
   // @ts-expect-error payload type issue
   const CustomTooltip = ({ active, payload }) => {
     if (active && payload && payload.length > 0) {

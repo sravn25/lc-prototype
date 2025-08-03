@@ -16,7 +16,8 @@ import { DropletsIcon, SplitIcon } from "lucide-react";
 import { useState } from "react";
 import { Button } from "./ui/button";
 import { formatDate } from "@/lib/utils";
-import OverviewGraph from "./overview-graph";
+import RevenueProcessGraph from "./graph/revenue-process-graph";
+import LinenCirculationChart from "./graph/linen-circulation-graph";
 
 export default function DashboardOverview({ role }: { role: DASHBOARD_ROLE }) {
   const [collectionView, setCollectionView] = useState(true);
@@ -160,9 +161,11 @@ export default function DashboardOverview({ role }: { role: DASHBOARD_ROLE }) {
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="text-3xl font-bold tracking-tight">Dashboard</h2>
+        <h2 className="text-3xl font-bold tracking-tight capitalize">
+          {role} Dashboard
+        </h2>
         <p className="text-muted-foreground">
-          Welcome to your admin dashboard. Here&apos;s an overview of your
+          Welcome to your {role} dashboard. Here&apos;s an overview of your
           business.
         </p>
       </div>
@@ -189,7 +192,8 @@ export default function DashboardOverview({ role }: { role: DASHBOARD_ROLE }) {
         ))}
       </div>
       {renderDetailCards()}
-      <OverviewGraph />
+      <RevenueProcessGraph />
+      <LinenCirculationChart />
     </div>
   );
 }
